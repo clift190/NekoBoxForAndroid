@@ -62,13 +62,16 @@ class ConfigEditActivity : ThemedActivity() {
         binding.editor.apply {
             language = JsonLanguage()
             setHorizontallyScrolling(true)
-            setTextContent(DataStore.profileCacheStore.getString(key)!!)
-            addTextChangedListener {
+            val content = DataStore.profileCacheStore.getString(key)!!
+            val textWatcher = addTextChangedListener {
                 if (!dirty) {
                     dirty = true
                     DataStore.dirty = true
                 }
             }
+            removeTextChangedListener(textWatcher)
+            setTextContent(content)
+            addTextChangedListener(textWatcher)
         }
 
         binding.actionTab.setOnClickListener {
