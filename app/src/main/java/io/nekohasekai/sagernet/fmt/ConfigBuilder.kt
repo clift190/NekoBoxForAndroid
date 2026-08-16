@@ -294,9 +294,9 @@ fun buildConfig(
                 domain_strategy = genDomainStrategy(DataStore.resolveDestination)
                 sniff = needSniff
                 sniff_override_destination = needSniffOverride
-                if (DataStore.mixedInboundNeedsAuth) {
+                if (DataStore.mixedInboundHasAuth) {
                     users = listOf(User().also { u ->
-                        u.username = Key.MIXED_USERNAME
+                        u.username = DataStore.mixedUsername
                         u.password = DataStore.mixedSecret
                     })
                 }

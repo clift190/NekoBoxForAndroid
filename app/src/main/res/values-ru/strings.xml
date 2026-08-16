@@ -329,6 +329,10 @@
 <string name="port_http">Порт прокси HTTP</string>
 <string name="port_local_dns">Локальный порт DNS</string>
 <string name="port_proxy">Порт прокси SOCKS5</string>
+<string name="local_proxy_settings">Настройки локального прокси</string>
+<string name="proxy_username">Имя пользователя прокси</string>
+<string name="proxy_password">Пароль прокси</string>
+<string name="port_out_of_range">Порт должен быть в диапазоне 1–65535</string>
 <string name="port_transproxy">Транспрокси-порт</string>
 <string name="prefer">Предпочитать</string>
 <string name="preference_copied">Текст "%1$s" скопирован в буфер обмена</string>

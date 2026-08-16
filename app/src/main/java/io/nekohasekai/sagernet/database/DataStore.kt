@@ -142,12 +142,14 @@ object DataStore : OnPreferenceDataStoreChangeListener {
     val mixedSecret: String
         @Synchronized get() {
             var s = configurationStore.getString(Key.MIXED_SECRET)
-            if (s.isNullOrEmpty()) {
+            if (s == null) {
                 s = java.util.UUID.randomUUID().toString().replace("-", "")
                 configurationStore.putString(Key.MIXED_SECRET, s)
             }
             return s
         }
+
+    var mixedUsername by configurationStore.string(Key.MIXED_USERNAME_PREF) { Key.MIXED_USERNAME }
 
     var mixedPort: Int
         get() = getLocalPort(Key.MIXED_PORT, 2080)
@@ -157,7 +159,11 @@ object DataStore : OnPreferenceDataStoreChangeListener {
         get() = serviceMode == Key.MODE_VPN &&
             !(appendHttpProxy && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
 
-    val mixedInboundUser: String get() = if (mixedInboundAuthed) Key.MIXED_USERNAME else ""
+    val mixedInboundHasAuth: Boolean
+        get() = mixedInboundNeedsAuth &&
+            (mixedUsername.isNotEmpty() || mixedSecret.isNotEmpty())
+
+    val mixedInboundUser: String get() = if (mixedInboundAuthed) mixedUsername else ""
     val mixedInboundPass: String get() = if (mixedInboundAuthed) mixedSecret else ""
 
     fun initGlobal() {

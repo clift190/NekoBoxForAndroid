@@ -41,6 +41,10 @@
     <string name="service_mode">运行模式</string>
     <string name="service_mode_proxy">仅代理</string>
     <string name="port_proxy">代理端口</string>
+    <string name="port_out_of_range">端口范围应为 1–65535</string>
+    <string name="local_proxy_settings">本地代理设置</string>
+    <string name="proxy_username">代理用户名</string>
+    <string name="proxy_password">代理密码</string>
     <string name="port_http">HTTP 代理端口</string>
     <string name="port_local_dns">本地 DNS 端口</string>
     <string name="allow_access">允许来自局域网的连接</string>
