@@ -60,9 +60,18 @@ object HevTunRuntime {
             appendLine("  port: ${DataStore.mixedPort}")
             appendLine("  address: '$LOCALHOST'")
             appendLine("  udp: 'udp'")
+            appendLine("  pipeline: true")
             if (useAuth) {
                 appendLine("  username: '${DataStore.mixedUsername.yamlEscape()}'")
                 appendLine("  password: '${DataStore.mixedSecret.yamlEscape()}'")
+            }
+            if (DataStore.enableFakeDns) {
+                appendLine("mapdns:")
+                appendLine("  address: '${VpnService.PRIVATE_VLAN4_ROUTER}'")
+                appendLine("  port: 53")
+                appendLine("  network: '100.64.0.0'")
+                appendLine("  netmask: '255.192.0.0'")
+                appendLine("  cache-size: 10000")
             }
             appendLine("misc:")
             appendLine("  log-level: 'warn'")
