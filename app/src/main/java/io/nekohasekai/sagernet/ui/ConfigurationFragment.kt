@@ -528,7 +528,10 @@ class ConfigurationFragment @JvmOverloads constructor(
                 setUserAgent(USER_AGENT)
             }.execute()
 
-            var remoteName = parseContentDisposition(Util.getStringBox(response.getHeader("content-disposition")))
+            var remoteName = RawUpdater.parseBodyProfileTitle(Util.getStringBox(response.contentString))
+            if (remoteName.isBlank()) {
+                remoteName = parseContentDisposition(Util.getStringBox(response.getHeader("content-disposition")))
+            }
             if (remoteName.isBlank()) {
                 remoteName = decodeProfileTitle(Util.getStringBox(response.getHeader("profile-title")))
             }
