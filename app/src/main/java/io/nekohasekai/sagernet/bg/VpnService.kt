@@ -27,6 +27,7 @@ class VpnService : BaseVpnService(),
         const val PRIVATE_VLAN4_CLIENT = "172.19.0.1"
         const val PRIVATE_VLAN4_ROUTER = "172.19.0.2"
         const val FAKEDNS_VLAN4_CLIENT = "198.18.0.0"
+        const val HEV_MAPDNS_VLAN4 = "100.64.0.0"
         const val PRIVATE_VLAN6_CLIENT = "fdfe:dcba:9876::1"
         const val PRIVATE_VLAN6_ROUTER = "fdfe:dcba:9876::2"
 
@@ -122,6 +123,9 @@ class VpnService : BaseVpnService(),
             }
             builder.addRoute(PRIVATE_VLAN4_ROUTER, 32)
             builder.addRoute(FAKEDNS_VLAN4_CLIENT, 15)
+            if (DataStore.enableHevTun && DataStore.enableFakeDns) {
+                builder.addRoute(HEV_MAPDNS_VLAN4, 10)
+            }
             // https://issuetracker.google.com/issues/149636790
             if (ipv6Mode != IPv6Mode.DISABLE) {
                 builder.addRoute("2000::", 3)

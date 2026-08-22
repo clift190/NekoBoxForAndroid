@@ -69,7 +69,7 @@ object HevTunRuntime {
                 appendLine("mapdns:")
                 appendLine("  address: '${VpnService.PRIVATE_VLAN4_ROUTER}'")
                 appendLine("  port: 53")
-                appendLine("  network: '100.64.0.0'")
+                appendLine("  network: '${VpnService.HEV_MAPDNS_VLAN4}'")
                 appendLine("  netmask: '255.192.0.0'")
                 appendLine("  cache-size: 10000")
             }
